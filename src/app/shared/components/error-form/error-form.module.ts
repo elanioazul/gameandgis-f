@@ -10,6 +10,7 @@ import { ErrorFormComponent } from './error-form.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ErrorFormComponent]
 })
 export class ErrorFormModule { }
