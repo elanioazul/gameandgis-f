@@ -11,6 +11,8 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
 import { HomeComponent } from './home.component';
 import { MainComponent } from './components/main/main.component';
 
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { MainComponent } from './components/main/main.component';
   imports: [
     CommonModule,
     RouterModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FontAwesomeModule
   ],
   exports: [HomeComponent]
 })
