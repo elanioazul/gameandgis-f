@@ -22,10 +22,10 @@ const routes: Routes = [
 			),
 	},
 	{
-		path: "dashboard",
+		path: "home",
 		loadChildren: () =>
-			import("./pages/private/dashboard-page/dashboard-page.module").then(
-				(m) => m.DashboardPageModule
+			import("./pages/private/home-page/home-page.module").then(
+				(m) => m.HomePageModule
 			),
     canActivate: [authGuard]
 	},
