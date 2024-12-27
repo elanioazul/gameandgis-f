@@ -1,8 +1,7 @@
 <div class="cont">
 	<div class="form-container sign-up-container">
 		<form class="form" [formGroup]="registerForm">
-			<h1>Regístrate</h1>
-			<span>o usa tu email para registrarte:</span>
+			<h1>Crea una cuenta</h1>
 			<div class="form__field-group">
 				<input
 					class="form__input"
@@ -80,9 +79,9 @@
 				[inputText]="'Enviar'"
 				[isDisabled]="!registerForm.valid"
 			></app-button>
-			<a class="go-login" routerLink="/signin" href="#"
-				>Pulsa aqui si ya tienes una cuenta
-				<span class="dev-ranking">DevRanking</span></a
+			<a class="go-login" (click)="goSignin()"
+				>Pulsa aqui si ya eres unuario de
+				<span class="dev-ranking">GameandGis</span></a
 			>
 		</form>
 	</div>

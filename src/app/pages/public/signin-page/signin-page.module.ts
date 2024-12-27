@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SigninPageRoutingModule } from './signin-page-routing.module';
 import { SigninPageComponent } from './signin-page.component';
+import { SigninModule } from 'src/app/features/signin/signin.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SigninPageComponent } from './signin-page.component';
   ],
   imports: [
     CommonModule,
-    SigninPageRoutingModule
+    SigninPageRoutingModule,
+    SigninModule
   ]
 })
 export class SigninPageModule { }

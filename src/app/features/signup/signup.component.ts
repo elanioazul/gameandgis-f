@@ -14,6 +14,7 @@ import {
 	ValidatorFn,
 	Validators,
 } from "@angular/forms";
+import { Router } from "@angular/router";
 import { filter } from "rxjs";
 
 @Component({
@@ -22,6 +23,7 @@ import { filter } from "rxjs";
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  router = inject(Router);
 	registerForm!: FormGroup;
 	fb: FormBuilder = inject(FormBuilder);
 
@@ -114,4 +116,8 @@ export class SignupComponent {
 			}
 		};
 	};
+
+  goSignin(): void {
+    this.router.navigate(['/signin'])
+  }
 }
