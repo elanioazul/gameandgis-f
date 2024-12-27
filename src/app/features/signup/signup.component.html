@@ -1,0 +1,88 @@
+<div class="cont">
+	<div class="form-container sign-up-container">
+		<form class="form" [formGroup]="registerForm">
+			<h1>Crea una cuenta</h1>
+			<div class="form__field-group">
+				<input
+					class="form__input"
+					type="text"
+					id="name"
+					pInputText
+					formControlName="name"
+					placeholder="Nombre"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('name')!"
+				></app-error-form>
+			</div>
+			<div class="form__field-group">
+				<input
+					class="form__input"
+					type="text"
+					id="surnames"
+					pInputText
+					formControlName="surnames"
+					placeholder="Apellidos"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('surnames')!"
+				></app-error-form>
+			</div>
+			<div class="form__field-group">
+				<input
+					class="form__input"
+					type="email"
+					id="email"
+					pInputText
+					formControlName="email"
+					placeholder="Email"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('email')!"
+				></app-error-form>
+			</div>
+			<div class="form__field-group">
+				<input
+					class="form__input form__input--pass"
+					type="password"
+					#password
+					id="password"
+					pInputText
+					formControlName="password"
+					placeholder="Contraseña"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('password')!"
+				></app-error-form>
+			</div>
+			<div class="form__field-group">
+				<input
+					class="form__input form__input--pass"
+					type="password"
+					#confirmPassword
+					id="confirmPassword"
+					pInputText
+					formControlName="confirmPassword"
+					placeholder="Confirmación contraseña"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('confirmPassword')!"
+				></app-error-form>
+			</div>
+			<app-button
+				[type]="'btn1'"
+				[inputText]="'Enviar'"
+				[isDisabled]="!registerForm.valid"
+			></app-button>
+			<a class="go-login" (click)="goSignin()"
+				>Pulsa aqui si ya eres unuario de
+				<span class="dev-ranking">GameandGis</span></a
+			>
+		</form>
+	</div>
+</div>

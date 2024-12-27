@@ -1,0 +1,47 @@
+<ng-template #templateOne>
+	<button
+		class="btn1"
+		[innerText]="inputText"
+		[disabled]="isDisabled"
+		(click)="onButtonClick()"
+	></button>
+</ng-template>
+
+<!-- <ng-template #templateTwo>
+	<p-button
+		[label]="label"
+		[loading]="loading"
+		[disabled]="isDisabled"
+	></p-button>
+</ng-template>
+
+<ng-template #templateThree>
+	<button
+		(click)="onButtonClick()"
+		class="button"
+		[disabled]="!enabled"
+		[ngClass]="
+			'button' +
+			' ' +
+			(customClass && customClass) +
+			' ' +
+			(variant + '-button') +
+			' ' +
+			(!enabled && variant + '-button--disabled')
+		"
+	>
+		{{ label }}
+	</button>
+</ng-template> -->
+
+<div [ngSwitch]="type">
+	<div *ngSwitchCase="'btn1'">
+		<ng-container [ngTemplateOutlet]="templateOne"></ng-container>
+	</div>
+	<!-- <div *ngSwitchCase="'primeng'">
+		<ng-container [ngTemplateOutlet]="templateTwo"></ng-container>
+	</div>
+	<div *ngSwitchCase="'auth0'">
+		<ng-container [ngTemplateOutlet]="templateThree"></ng-container>
+	</div> -->
+</div>

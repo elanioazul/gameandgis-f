@@ -1,0 +1,46 @@
+<div class="cont">
+	<div class="form-container sign-in-container">
+		<form class="form" [formGroup]="loginForm">
+			<h1>Login</h1>
+			<div class="form__field-group">
+				<input
+					class="form__input"
+					type="email"
+					id="email"
+					pInputText
+					formControlName="email"
+					placeholder="Email"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="loginForm.get('email')!"
+				></app-error-form>
+			</div>
+			<div class="form__field-group">
+				<input
+					class="form__input"
+					type="password"
+					id="password"
+					pInputText
+					formControlName="password"
+					placeholder="Contraseña"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="loginForm.get('password')!"
+				></app-error-form>
+			</div>
+			<a href="#">¿olvidaste tu password?</a>
+			<app-button
+				[type]="'btn1'"
+				[inputText]="'Login'"
+				[isDisabled]="!loginForm.valid"
+				(buttonClick)="onSumbmit()"
+			></app-button>
+			<a class="go-signup" (click)="goToSignUp()"
+				>¿No tienes una cuenta
+				<span class="dev-ranking">GameandGis</span> todavía?</a
+			>
+		</form>
+	</div>
+</div>
