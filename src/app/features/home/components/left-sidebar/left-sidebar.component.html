@@ -17,6 +17,7 @@
           class="sidenav-nav-link"
           [routerLink]="item.routeLink"
           routerLinkActive="active"
+          [relativeTo]="route"
           [routerLinkActiveOptions]="{ exact: true }"
         >
           <fa-icon class="sidenav-link-icon" [icon]="item.icon" size="sm"></fa-icon>

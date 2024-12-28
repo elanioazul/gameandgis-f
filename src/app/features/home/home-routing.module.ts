@@ -7,14 +7,18 @@ import { ChatComponent } from './components/chat/chat.component';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: "", component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'hunting-areas', component: HuntingAreasComponent },
-  { path: 'chat', component: ChatComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'hunting-areas', component: HuntingAreasComponent },
+      { path: 'chat', component: ChatComponent },
+    ]
+  }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

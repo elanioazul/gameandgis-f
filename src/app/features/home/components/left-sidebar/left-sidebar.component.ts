@@ -1,7 +1,8 @@
 import { Component, input, output } from '@angular/core';
+import {ActivatedRoute } from "@angular/router"
 import {
 	faUser,
-	faWindowClose,
+	faArrowRightFromBracket,
 	faBars,
   faWarehouse,
 	faHouse,
@@ -13,11 +14,13 @@ import {
   styleUrl: './left-sidebar.component.scss'
 })
 export class LeftSidebarComponent {
+  faArrowRightFromBracket = faArrowRightFromBracket;
 	faBars = faBars;
 	faHouse = faHouse;
   faWarehouse = faWarehouse;
   faCommentDots = faCommentDots;
 	faUser = faUser;
+
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
   items = [
@@ -42,6 +45,8 @@ export class LeftSidebarComponent {
       label: 'Perfil',
     },
   ];
+
+  constructor(public route: ActivatedRoute) {}
 
   toggleCollapse(): void {
     this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed());
