@@ -37,6 +37,7 @@
           routerLinkActive="active"
           [relativeTo]="route"
           [routerLinkActiveOptions]="{ exact: true }"
+          (click)="logout()"
         >
           <fa-icon class="sidenav-link-icon" [icon]="faArrowRightFromBracket" size="sm"></fa-icon>
           @if (!isLeftSidebarCollapsed()) {
