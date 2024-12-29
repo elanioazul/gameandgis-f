@@ -30,13 +30,20 @@
   </div>
   <div class="auth-section">
     <ng-container *ngIf="recognizedUser">
-      <app-button
-        [type]="'auth0'"
-        variant="solid"
-        customClass="authentication-button"
-        label="Log Out"
-        (buttonClick)="logout()"
-      ></app-button>
+      <li class="sidenav-nav-item">
+        <a
+          class="sidenav-nav-link"
+          [routerLink]="'signin'"
+          routerLinkActive="active"
+          [relativeTo]="route"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <fa-icon class="sidenav-link-icon" [icon]="faArrowRightFromBracket" size="sm"></fa-icon>
+          @if (!isLeftSidebarCollapsed()) {
+            <span class="sidenav-link-text">{{ 'Log out' }}</span>
+          }
+        </a>
+      </li>
       <ng-container *ngTemplateOutlet="navBarSessionInfo"></ng-container>
     </ng-container>
   </div>
