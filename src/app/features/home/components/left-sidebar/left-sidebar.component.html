@@ -28,4 +28,43 @@
       </li>
     }
   </div>
+  <div class="auth-section">
+    <ng-container *ngIf="recognizedUser">
+      <li class="sidenav-nav-item">
+        <a
+          class="sidenav-nav-link"
+          [routerLink]="'signin'"
+          routerLinkActive="active"
+          [relativeTo]="route"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="logout()"
+        >
+          <fa-icon class="sidenav-link-icon" [icon]="faArrowRightFromBracket" size="sm"></fa-icon>
+          @if (!isLeftSidebarCollapsed()) {
+            <span class="sidenav-link-text">{{ 'Log out' }}</span>
+          }
+        </a>
+      </li>
+      <ng-container *ngTemplateOutlet="navBarSessionInfo"></ng-container>
+    </ng-container>
+  </div>
 </div>
+
+<ng-template #navBarSessionInfo>
+  <div class="user-info">
+    <li class="sidenav-nav-item">
+      <a
+        class="sidenav-nav-link"
+        [routerLink]="'profile'"
+        routerLinkActive="active"
+        [relativeTo]="route"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidenav-link-icon" [icon]="faUser" size="sm"></fa-icon>
+        @if (!isLeftSidebarCollapsed()) {
+          <span class="sidenav-link-text">{{ 'Hugo' }}</span>
+        }
+      </a>
+    </li>
+  </div>
+</ng-template>

@@ -96,3 +96,66 @@
 .active .sidenav-link-text {
   color: #000;
 }
+
+
+.auth-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.938rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.auth-section .sidenav-nav-item {
+  width: 100%;
+  margin-bottom: 0.625rem;
+}
+
+.auth-section .sidenav-nav-item .sidenav-nav-link {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: #f3f3f3;
+  text-decoration: none;
+  border-radius: 0.625rem;
+  transition: all 0.3s ease;
+}
+
+.auth-section .sidenav-nav-item .sidenav-nav-link .sidenav-link-icon {
+  font-size: 22px;
+  width: 2rem;
+  min-width: 2rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.auth-section .sidenav-nav-item .sidenav-nav-link .sidenav-link-text {
+  margin-left: 1.5rem;
+}
+
+.auth-section .sidenav-nav-item:hover .sidenav-nav-link {
+  background-color: #fff;
+  color: #000;
+}
+
+.auth-section .user-info {
+  width: 100%;
+}
+
+.auth-section .user-info .user-info-content {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.auth-section .user-info .user-info-content .user-icon {
+  margin-right: 0.5rem;
+}
+
+.auth-section .user-info .user-info-content .user-name {
+  font-size: 1rem;
+  font-weight: 600;
+}

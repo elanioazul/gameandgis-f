@@ -13,7 +13,7 @@ import { MainComponent } from './components/main/main.component';
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
-
+import { ButtonModule } from "@shared/components/button/button.module";
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -28,7 +28,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     CommonModule,
     RouterModule,
     HomeRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ButtonModule
+
   ],
   exports: [HomeComponent]
 })

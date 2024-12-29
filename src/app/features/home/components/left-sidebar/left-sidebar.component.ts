@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
-import {ActivatedRoute } from "@angular/router"
+import { Component, inject, input, output, Signal } from '@angular/core';
+import {ActivatedRoute, Router, RouterModule } from "@angular/router"
+import { AuthService } from '@core/services/infrastructure/iam/auth.service';
 import {
 	faUser,
 	faArrowRightFromBracket,
@@ -7,6 +8,7 @@ import {
   faWarehouse,
 	faHouse,
 	faCommentDots,
+  faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-left-sidebar',
@@ -14,12 +16,15 @@ import {
   styleUrl: './left-sidebar.component.scss'
 })
 export class LeftSidebarComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
   faArrowRightFromBracket = faArrowRightFromBracket;
 	faBars = faBars;
 	faHouse = faHouse;
   faWarehouse = faWarehouse;
   faCommentDots = faCommentDots;
 	faUser = faUser;
+  faMagnifyingGlass = faMagnifyingGlass;
 
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
@@ -39,12 +44,9 @@ export class LeftSidebarComponent {
       icon: faCommentDots,
       label: 'Chats',
     },
-    {
-      routeLink: 'profile',
-      icon: faUser,
-      label: 'Perfil',
-    },
   ];
+
+  recognizedUser = true;
 
   constructor(public route: ActivatedRoute) {}
 
@@ -55,4 +57,9 @@ export class LeftSidebarComponent {
   closeSidenav(): void {
     this.changeIsLeftSidebarCollapsed.emit(true);
   }
+
+	logout(): void {
+		this.authService.logout();
+		this.router.navigate(["/signin"]);
+	}
 }
