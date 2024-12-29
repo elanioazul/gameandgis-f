@@ -51,18 +51,19 @@
 
 <ng-template #navBarSessionInfo>
   <div class="user-info">
-    <a
-      routerLink="./profile"
-      routerLinkActive="nav-bar__user-info-link--active"
-    >
-      <div class="user-info-content">
-        <div class="user-icon">
-          <fa-icon [icon]="faUser" size="lg"></fa-icon>
-        </div>
-        <span class="user-name">
-          {{ "Hugo" }}
-        </span>
-      </div>
-    </a>
+    <li class="sidenav-nav-item">
+      <a
+        class="sidenav-nav-link"
+        [routerLink]="'profile'"
+        routerLinkActive="active"
+        [relativeTo]="route"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidenav-link-icon" [icon]="faUser" size="sm"></fa-icon>
+        @if (!isLeftSidebarCollapsed()) {
+          <span class="sidenav-link-text">{{ 'Hugo' }}</span>
+        }
+      </a>
+    </li>
   </div>
 </ng-template>

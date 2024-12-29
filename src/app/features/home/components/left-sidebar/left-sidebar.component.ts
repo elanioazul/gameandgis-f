@@ -8,6 +8,7 @@ import {
   faWarehouse,
 	faHouse,
 	faCommentDots,
+  faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-left-sidebar',
@@ -23,6 +24,7 @@ export class LeftSidebarComponent {
   faWarehouse = faWarehouse;
   faCommentDots = faCommentDots;
 	faUser = faUser;
+  faMagnifyingGlass = faMagnifyingGlass;
 
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
@@ -41,11 +43,6 @@ export class LeftSidebarComponent {
       routeLink: 'chat',
       icon: faCommentDots,
       label: 'Chats',
-    },
-    {
-      routeLink: 'profile',
-      icon: faUser,
-      label: 'Perfil',
     },
   ];
 
