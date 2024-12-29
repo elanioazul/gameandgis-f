@@ -7,7 +7,7 @@
 	></button>
 </ng-template>
 
-<!-- <ng-template #templateTwo>
+<ng-template #templateTwo>
 	<p-button
 		[label]="label"
 		[loading]="loading"
@@ -32,16 +32,16 @@
 	>
 		{{ label }}
 	</button>
-</ng-template> -->
+</ng-template>
 
 <div [ngSwitch]="type">
 	<div *ngSwitchCase="'btn1'">
 		<ng-container [ngTemplateOutlet]="templateOne"></ng-container>
 	</div>
-	<!-- <div *ngSwitchCase="'primeng'">
+	<div *ngSwitchCase="'primeng'">
 		<ng-container [ngTemplateOutlet]="templateTwo"></ng-container>
 	</div>
 	<div *ngSwitchCase="'auth0'">
 		<ng-container [ngTemplateOutlet]="templateThree"></ng-container>
-	</div> -->
+	</div>
 </div>

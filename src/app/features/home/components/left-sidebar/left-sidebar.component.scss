@@ -96,3 +96,37 @@
 .active .sidenav-link-text {
   color: #000;
 }
+
+
+.auth-section {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.938rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authentication-button {
+  margin-bottom: 1rem;
+}
+
+.user-info {
+  width: 100%;
+}
+
+.user-info-content {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.user-icon {
+  margin-right: 0.5rem;
+}
+
+.user-name {
+  font-size: 1rem;
+  font-weight: 600;
+}

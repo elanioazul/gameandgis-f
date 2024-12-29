@@ -28,4 +28,34 @@
       </li>
     }
   </div>
+  <div class="auth-section">
+    <ng-container *ngIf="recognizedUser">
+      <app-button
+        [type]="'auth0'"
+        variant="solid"
+        customClass="authentication-button"
+        label="Log Out"
+        (buttonClick)="logout()"
+      ></app-button>
+      <ng-container *ngTemplateOutlet="navBarSessionInfo"></ng-container>
+    </ng-container>
+  </div>
 </div>
+
+<ng-template #navBarSessionInfo>
+  <div class="user-info">
+    <a
+      routerLink="./profile"
+      routerLinkActive="nav-bar__user-info-link--active"
+    >
+      <div class="user-info-content">
+        <div class="user-icon">
+          <fa-icon [icon]="faUser" size="lg"></fa-icon>
+        </div>
+        <span class="user-name">
+          {{ "Hugo" }}
+        </span>
+      </div>
+    </a>
+  </div>
+</ng-template>

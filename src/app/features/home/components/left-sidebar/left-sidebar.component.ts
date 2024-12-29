@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
-import {ActivatedRoute } from "@angular/router"
+import { Component, inject, input, output, Signal } from '@angular/core';
+import {ActivatedRoute, Router, RouterModule } from "@angular/router"
+import { AuthService } from '@core/services/infrastructure/iam/auth.service';
 import {
 	faUser,
 	faArrowRightFromBracket,
@@ -14,6 +15,8 @@ import {
   styleUrl: './left-sidebar.component.scss'
 })
 export class LeftSidebarComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
   faArrowRightFromBracket = faArrowRightFromBracket;
 	faBars = faBars;
 	faHouse = faHouse;
@@ -46,6 +49,8 @@ export class LeftSidebarComponent {
     },
   ];
 
+  recognizedUser = true;
+
   constructor(public route: ActivatedRoute) {}
 
   toggleCollapse(): void {
@@ -55,4 +60,9 @@ export class LeftSidebarComponent {
   closeSidenav(): void {
     this.changeIsLeftSidebarCollapsed.emit(true);
   }
+
+	logout(): void {
+		this.authService.logout();
+		this.router.navigate(["/signin"]);
+	}
 }
