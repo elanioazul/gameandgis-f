@@ -34,10 +34,8 @@ export class SigninComponent {
 		this.authService.login(user)
     .subscribe({
       next: (data: IReadUser) => {
-        console.log('userdata' + data);
-
         this.authService.setUserCredentials$.next(data);
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/home/dashboard'])
       },
         error: (err: { error: { message: string; }; }) => {
           //this.errorMessage = err.error.message;
