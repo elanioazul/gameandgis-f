@@ -1,4 +1,5 @@
 export interface IReadUser {
+  id: number,
 	name: string;
 	surnameOne: string;
 	surnametwo: string;

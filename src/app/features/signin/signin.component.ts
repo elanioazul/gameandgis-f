@@ -33,8 +33,8 @@ export class SigninComponent {
 		};
 		this.authService.login(user)
     .subscribe({
-      next: (data: IReadUser) => {
-        this.authService.setUserCredentials$.next(data);
+      next: (user: IReadUser) => {
+        this.authService.setUserCredentials$.next(user);
         this.router.navigate(['/home/dashboard'])
       },
         error: (err: { error: { message: string; }; }) => {
