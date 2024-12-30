@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IReadUser } from '@core/interfaces/iam/user-read.interface';
 import { IUser } from '@core/interfaces/iam/user.interface';
 import { AuthService } from '@core/services/infrastructure/iam/auth.service';
 
@@ -32,7 +33,9 @@ export class SigninComponent {
 		};
 		this.authService.login(user)
     .subscribe({
-      next: (data: any) => {
+      next: (data: IReadUser) => {
+        console.log('userdata' + data);
+
         this.authService.setUserCredentials$.next(data);
         this.router.navigate(['/dashboard'])
       },

@@ -1,7 +1,9 @@
 export interface IReadUser {
+	name: string;
+	surnameOne: string;
+	surnametwo: string;
 	email: string;
-	password: string;
-	name?: string;
-	surname?: string;
-  token: string
+  tokenType: string;
+  accessToken: string;
+  refreshToken: string
 }

@@ -80,14 +80,14 @@ export class AuthService extends BaseApiService {
 				);
 				this.sessionStorageService.saveData(
 					ACCESS_TOKEN,
-					JSON.stringify(this.user()?.token)
+					JSON.stringify(this.user()?.accessToken)
 				);
 			}
 		});
 	}
 
   login(user: IUser): Observable<any> {
-    return this.httpClient.request<any>('post', environment.apiDomain + `${this.basePath}` + `${environment.iam.signIn}`, {
+    return this.httpClient.request<IReadUser>('post', environment.apiDomain + `${this.basePath}` + `${environment.iam.signIn}`, {
       body: user
     })
   }
