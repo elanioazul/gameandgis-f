@@ -27,6 +27,10 @@ time, mark, audio, video {
    font: inherit;
    vertical-align: baseline;
 }
+/*en el left sidebar de repente le salió un punto a cada li del div class="auth-section"*/
+li::marker {
+  content: "";
+}
 
 /* Iniciación de la propiedad "display" para etiquetas de HTML5 para navegadores antiguos */
 article, aside, details, figcaption, figure,
