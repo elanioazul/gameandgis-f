@@ -20,10 +20,24 @@
 				<input
 					class="form__input"
 					type="text"
-					id="surnames"
+					id="surnameOne"
 					pInputText
-					formControlName="surnames"
-					placeholder="Apellidos"
+					formControlName="surnameOne"
+					placeholder="Primer apellido"
+				/>
+				<app-error-form
+					class="form__error"
+					[control]="registerForm.get('surnames')!"
+				></app-error-form>
+			</div>
+      <div class="form__field-group">
+				<input
+					class="form__input"
+					type="text"
+					id="surnameTwo"
+					pInputText
+					formControlName="surnameTwo"
+					placeholder="Segundo apellido"
 				/>
 				<app-error-form
 					class="form__error"
@@ -80,7 +94,7 @@
 				[isDisabled]="!registerForm.valid"
 			></app-button>
 			<a class="go-login" (click)="goSignin()"
-				>Pulsa aqui si ya eres unuario de
+				>Pulsa aqui si ya eres usuario de
 				<span class="dev-ranking">GameandGis</span></a
 			>
 		</form>
