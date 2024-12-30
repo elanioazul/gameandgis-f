@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-
+import { LoadingIndicatorModule } from '@shared/components/loading-indicator/loading-indicator.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +12,8 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    LoadingIndicatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,16 +32,16 @@ export class SigninComponent {
 			password: this.loginForm.get("password")?.value
 		};
 		this.authService.login(user)
-    .subscribe({
-      next: (user: IReadUser) => {
-        this.authService.setUserCredentials$.next(user);
-        this.router.navigate(['/home/dashboard'])
-      },
-        error: (err: { error: { message: string; }; }) => {
-          //this.errorMessage = err.error.message;
-          this.authService.errorGettingUserCredentials$.next("not recognized user");
-        }
-    });
+      .subscribe({
+        next: (user: IReadUser) => {
+          this.authService.setUserCredentials$.next(user);
+          this.router.navigate(['/home/dashboard'])
+        },
+          error: (err: { error: { message: string; }; }) => {
+            //this.errorMessage = err.error.message;
+            this.authService.errorGettingUserCredentials$.next("not recognized user");
+          }
+      });
 	}
 
   goToSignUp(): void {

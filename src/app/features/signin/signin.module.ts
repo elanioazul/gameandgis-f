@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "@shared/components/button/button.module";
 import { ErrorFormModule } from "@shared/components/error-form/error-form.module";
 import { InputTextModule } from "primeng/inputtext";
+import { LoadingIndicatorModule } from '@shared/components/loading-indicator/loading-indicator.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InputTextModule } from "primeng/inputtext";
 		FormsModule,
 		ReactiveFormsModule,
 		InputTextModule,
+    LoadingIndicatorModule
   ],
   exports: [SigninComponent]
 })

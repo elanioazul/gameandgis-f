@@ -20,6 +20,7 @@
     "@angular/router": "^17.3.0",
     "@fortawesome/angular-fontawesome": "^1.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "primeflex": "^3.3.1",
     "primeng": "^17.18.12",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
