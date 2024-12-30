@@ -32,6 +32,7 @@ export class AuthService extends BaseApiService {
 	//selectors
 	user = computed(() => this.state().user);
 	isLoggedIn = computed(() => this.state().isLoggedIn);
+	isLoggedOut= computed(() => !this.state().isLoggedIn);
 
 	//sources
 	setUserCredentials$ = new Subject<IReadUser>();
@@ -81,6 +82,14 @@ export class AuthService extends BaseApiService {
 				this.sessionStorageService.saveData(
 					ACCESS_TOKEN,
 					JSON.stringify(this.user()?.accessToken)
+				);
+			}
+			if (this.isLoggedOut()) {
+				this.sessionStorageService.removeData(
+					CURRENTUSER
+				);
+				this.sessionStorageService.removeData(
+					ACCESS_TOKEN
 				);
 			}
 		});

@@ -62,7 +62,7 @@
       >
         <fa-icon class="sidenav-link-icon" [icon]="faUser" size="sm"></fa-icon>
         @if (!isLeftSidebarCollapsed()) {
-          <span class="sidenav-link-text">{{ 'Hugo' }}</span>
+          <span class="sidenav-link-text">{{ getCurrentUserName() }}</span>
         }
       </a>
     </li>
