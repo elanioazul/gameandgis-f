@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LoadingIndicatorModule } from '@shared/components/loading-indicator/loading-indicator.module';
+import { provideAnimations } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +16,7 @@ import { LoadingIndicatorModule } from '@shared/components/loading-indicator/loa
     CoreModule,
     LoadingIndicatorModule
   ],
-  providers: [],
+  providers: [provideAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
