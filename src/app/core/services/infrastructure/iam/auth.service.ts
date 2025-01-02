@@ -110,4 +110,13 @@ export class AuthService extends BaseApiService {
       body: user
     })
   }
+
+  public getToken(): any {
+    const token = this.sessionStorageService.getData(ACCESS_TOKEN);
+    if (token) {
+      return JSON.parse(token);
+    }
+
+    return {};
+  }
 }
