@@ -8,6 +8,8 @@ import { ButtonModule } from "@shared/components/button/button.module";
 import { ErrorFormModule } from "@shared/components/error-form/error-form.module";
 import { InputTextModule } from "primeng/inputtext";
 
+import { DialogModule } from 'primeng/dialog';
+
 @NgModule({
   declarations: [
     SignupComponent
@@ -19,6 +21,7 @@ import { InputTextModule } from "primeng/inputtext";
 		InputTextModule,
 		FormsModule,
 		ReactiveFormsModule,
+    DialogModule
   ],
   exports: [SignupComponent]
 })

@@ -92,6 +92,7 @@
 				[type]="'btn1'"
 				[inputText]="'Enviar'"
 				[isDisabled]="!registerForm.valid"
+        (buttonClick)="onSumbmit()"
 			></app-button>
 			<a class="go-login" (click)="goSignin()"
 				>Pulsa aqui si ya eres usuario de
@@ -100,3 +101,16 @@
 		</form>
 	</div>
 </div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false">
+    <p>
+        Revisa la bandeja de entrada de tu email. <br>Se ha enviado un mensaje de confirmación de registro.
+    </p>
+</p-dialog>

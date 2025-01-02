@@ -15,6 +15,8 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { INewUser } from "@core/interfaces/iam/user.interface";
+import { AuthService } from "@core/services/infrastructure/iam/auth.service";
 import { filter } from "rxjs";
 
 @Component({
@@ -23,12 +25,15 @@ import { filter } from "rxjs";
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  authService = inject(AuthService);
   router = inject(Router);
 	registerForm!: FormGroup;
 	fb: FormBuilder = inject(FormBuilder);
 
   @ViewChild("password") inputPass!: ElementRef<HTMLInputElement>;
 	@ViewChild("confirmPassword") inputPassConfirm!: ElementRef<HTMLInputElement>;
+
+  visible = false;
 	constructor() {
 		this.registerForm = this.fb.group(
 			{
@@ -120,5 +125,28 @@ export class SignupComponent {
 
   goSignin(): void {
     this.router.navigate(['/signin'])
+  }
+
+  onSumbmit(): void {
+    const user: INewUser = {
+      name: this.registerForm.get("name")?.value,
+      surnameOne: this.registerForm.get("surnameOne")?.value,
+      surnameTwo: this.registerForm.get("surnameTwo")?.value,
+      email: this.registerForm.get("email")?.value,
+      password: this.registerForm.get("password")?.value
+    };
+    this.authService.signUp(user)
+      .subscribe({
+        next: (user: any) => {
+          this.visible = true;
+
+        },
+        error: (err: { error: { message: string; }; }) => {
+          //this.errorMessage = err.error.message;
+          //this.authService.errorGettingUserCredentials$.next("not recognized user");
+          console.log(err);
+          //TODO: manjejar error de conflicto (mismo email ya en bbdd)
+        }
+      });
   }
 }

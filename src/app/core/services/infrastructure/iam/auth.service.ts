@@ -1,5 +1,5 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { IUser } from '@core/interfaces/iam/user.interface';
+import { INewUser, IUser } from '@core/interfaces/iam/user.interface';
 import { SessionStorageService } from '../../session-storage.service';
 import { Observable, Subject } from 'rxjs';
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
@@ -104,4 +104,10 @@ export class AuthService extends BaseApiService {
 	logout(): void {
 		this.logOut$.next(null);
 	}
+
+  signUp(user: INewUser): Observable<any> {
+    return this.httpClient.request<any>('post', environment.apiDomain + `${this.basePath}` + `${environment.iam.signUp}`, {
+      body: user
+    })
+  }
 }
