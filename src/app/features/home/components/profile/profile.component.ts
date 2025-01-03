@@ -5,19 +5,10 @@ import { environment } from 'src/environments/environment';
 import { catchError, EMPTY, finalize, map, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { SessionStorageService } from '@core/services/session-storage.service';
-interface UserProfile {
-  id: number;
-  name: string;
-  surnameOne: string;
-  surnameTwo: string;
-  email: string;
-  avatar: string;
-}
-type UserProfileForm = Pick<UserProfile, "name" | "email" | "avatar">;
-interface UserDataResponse {
-  status: 'ok';
-  data: UserProfile;
-}
+import { IReadAvatar, IReadUserProfile } from '../../interfaces/user-profile.interface';
+
+type UserProfileForm = Pick<IReadUserProfile, 'name' | 'surnameOne' | 'surnameTwo' | 'email'> & { avatar: string | Blob };
+
 export interface ValidationErrorResponse {
   message: string;
   errors: {
@@ -44,7 +35,7 @@ export class ProfileComponent {
     avatar: new FormControl<string|Blob>('')
   });
 
-  private userData: UserProfile | null = null;
+  private userData: IReadUserProfile | null = null;
 
   @ViewChild('fileInput')
   protected fileInput!: ElementRef<HTMLInputElement>;
@@ -68,15 +59,30 @@ export class ProfileComponent {
    */
   private get isFormPristine(): boolean {
     if (!this.userData || !this.form.value) {
+      console.log('eeeee');
+
       return false;
     }
 
-    const formValue = this.form.value;
-    const userDataSubset: Partial<UserProfile> = {};
+    console.log('continuo');
 
+    const formValue = this.form.value;
+    const userDataSubset: Partial<IReadUserProfile> = {};
+
+    // for (const key in formValue) {
+    //   if (formValue.hasOwnProperty(key) && this.userData.hasOwnProperty(key)) {
+    //     (userDataSubset[key as keyof IReadUserProfile] as any) = this.userData[key as keyof IReadUserProfile];
+    //   }
+    // }
     for (const key in formValue) {
       if (formValue.hasOwnProperty(key) && this.userData.hasOwnProperty(key)) {
-        (userDataSubset[key as keyof UserProfile] as any) = this.userData[key as keyof UserProfile];
+        if (key === 'avatar') {
+          // Transform the avatar property to a compatible type
+          const avatar = this.userData[key as keyof IReadUserProfile] as IReadAvatar;
+          userDataSubset[key as keyof IReadUserProfile] = avatar.path as any;
+        } else {
+          (userDataSubset[key as keyof IReadUserProfile] as any) = this.userData[key as keyof IReadUserProfile];
+        }
       }
     }
 
@@ -151,28 +157,32 @@ export class ProfileComponent {
     const currentUser = JSON.parse(currentUserData);
 
 
-    return this.httpClient.request<any>('get', environment.apiDomain + `` + `${environment.iam.userDetail}` + '/' + `${currentUser.userDetails.id}`)
+    return this.httpClient.request<IReadUserProfile>('get', environment.apiDomain + `` + `${environment.iam.userDetail}` + '/' + `${currentUser.userDetails.id}`)
 
   }
 
-  private updateForm(userData: UserProfile) {
-    console.log(userData);
-
+  private updateForm(userData: IReadUserProfile) {
     // Extract the keys from the form value
     const formValueKeys = Object.keys(this.form.value);
 
     // Create a subset of userData containing only the keys present in form.value
-    const userDataSubset: Partial<UserProfile> = {};
+    const userDataSubset: Partial<IReadUserProfile> = {};
 
     // Iterate over the keys and assign the corresponding values from userData to userDataSubset
     for (const key of formValueKeys) {
       if (userData.hasOwnProperty(key)) {
-        (userDataSubset[key as keyof UserProfile] as any) = userData[key as keyof UserProfile];
+        if (key === 'avatar') {
+          // Transform the avatar property to a compatible type
+          const avatar = userData[key as keyof IReadUserProfile] as IReadAvatar;
+          userDataSubset[key as keyof IReadUserProfile] = avatar.path as any;
+        } else {
+          (userDataSubset[key as keyof IReadUserProfile] as any) = userData[key as keyof IReadUserProfile];
+        }
       }
     }
 
     // Reset the form with the subset of userData
-    this.form.reset(userDataSubset as UserProfileForm);
+    this.form.reset(userDataSubset as unknown as UserProfileForm);
   }
 
   protected saveUserData() {
