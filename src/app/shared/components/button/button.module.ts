@@ -11,6 +11,6 @@ import { ButtonModule as PrimeButtonModule } from "primeng/button";
     CommonModule,
     PrimeButtonModule
   ],
-  exports: [ButtonComponent]
+  exports: [ButtonComponent, PrimeButtonModule]
 })
 export class ButtonModule { }

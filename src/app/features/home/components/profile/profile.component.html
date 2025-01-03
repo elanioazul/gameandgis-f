@@ -8,89 +8,87 @@
     (buttonClick)="loadUserData()"></app-button>
   }
   @else {
-  <form [formGroup]="form" (ngSubmit)="saveUserData()">
-
-    <div class="form-fields-wrapper">
-
-      <div class="input-fields-container">
-        <div class="form__field-group">
-          <h5 class="field-title">Name (*)</h5>
-          <input
-            class="form__input"
-            type="text"
-            id="name"
-            pInputText
-            formControlName="name"
-            placeholder="Nombre"
-          />
-          <app-error-form
-            class="form__error"
-            [control]="form.get('name')!"
-          ></app-error-form>
+  <form class="form" [formGroup]="form" (ngSubmit)="saveUserData()">
+      <div class="form__left">
+        <div class="form__info">
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="name"
+              pInputText
+              formControlName="name"
+              placeholder="Nombre"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('name')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="surnameOne"
+              pInputText
+              formControlName="surnameOne"
+              placeholder="Primer apellido"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('surnameOne')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="surnameTwo"
+              pInputText
+              formControlName="surnameTwo"
+              placeholder="Segundo apellido"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('surnameTwo')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="email"
+              id="email"
+              pInputText
+              formControlName="email"
+              placeholder="Email"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('email')!"
+            ></app-error-form>
+          </div>
         </div>
-        <div class="form__field-group">
-          <input
-            class="form__input"
-            type="text"
-            id="surnameOne"
-            pInputText
-            formControlName="surnameOne"
-            placeholder="Primer apellido"
-          />
-          <app-error-form
-            class="form__error"
-            [control]="form.get('surnameOne')!"
-          ></app-error-form>
+        <div class="form__buttons">
+          <!-- <button mat-raised-button type="submit" color="primary" [disabled]="isSaveButtonDisabled">Save</button> -->
+          <app-button
+          [type]="'btn1'"
+          [inputText]="'Save'"
+          [isDisabled]="isSaveButtonDisabled"
+        ></app-button>
+          <!-- <button mat-button type="button" [disabled]="isResetButtonDisabled" (click)="restoreForm()">Reset</button> -->
+          <p-button label="Reset" [rounded]="true" severity="secondary" [disabled]="isResetButtonDisabled"  (click)="restoreForm()"></p-button>
         </div>
-        <div class="form__field-group">
-          <input
-            class="form__input"
-            type="text"
-            id="surnameTwo"
-            pInputText
-            formControlName="surnameTwo"
-            placeholder="Segundo apellido"
-          />
-          <app-error-form
-            class="form__error"
-            [control]="form.get('surnameTwo')!"
-          ></app-error-form>
-        </div>
-        <div class="form__field-group">
-          <h5 class="field-title">Email (*)</h5>
-          <input
-            class="form__input"
-            type="email"
-            id="email"
-            pInputText
-            formControlName="email"
-            placeholder="Email"
-          />
-          <app-error-form
-            class="form__error"
-            [control]="form.get('email')!"
-          ></app-error-form>
-        </div>
-
       </div>
 
-      <div class="avatar-container">
+      <div class="form__right">
         <img [src]="getAvatarFullUrl()" alt="avatar" />
 
         <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" />
       </div>
-
-    </div>
-
-    <div class="buttons-container">
-      <button mat-raised-button type="submit" color="primary" [disabled]="isSaveButtonDisabled">Save</button>
-      <button mat-button type="button" [disabled]="isResetButtonDisabled" (click)="restoreForm()">Reset</button>
-    </div>
-
-    <div class="upload-progress-container">
-      <p-progressBar *ngIf="uploadProgress" [value]="uploadProgress"></p-progressBar>
-    </div>
-
   </form>
+
+  <div class="upload-progress-container">
+    <p-progressBar *ngIf="uploadProgress" [value]="uploadProgress"></p-progressBar>
+  </div>
   }
 </div>
