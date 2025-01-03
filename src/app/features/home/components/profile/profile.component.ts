@@ -59,12 +59,8 @@ export class ProfileComponent {
    */
   private get isFormPristine(): boolean {
     if (!this.userData || !this.form.value) {
-      console.log('eeeee');
-
       return false;
     }
-
-    console.log('continuo');
 
     const formValue = this.form.value;
     const userDataSubset: Partial<IReadUserProfile> = {};
