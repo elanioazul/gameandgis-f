@@ -185,11 +185,15 @@ export class ProfileComponent {
     // set the saving flag
     this.isSaveRequestInProgress = true;
 
+    this.disableForm();
+
     this.saveUserData$()
       .pipe(
         finalize(() => {
           // clear the saving flag
           this.isSaveRequestInProgress = false;
+
+          this.enableForm();
 
           // reset the progress
           this.uploadProgress = 0;
@@ -295,5 +299,16 @@ export class ProfileComponent {
   }
   private showError() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An unexpected error has occurred. Please try again later.' });
-}
+  }
+  private disableForm() {
+    Object.values(this.form.controls).forEach(control => {
+      control.disable()
+    })
+  }
+
+  private enableForm() {
+    Object.values(this.form.controls).forEach(control => {
+      control.enable()
+    })
+  }
 }
