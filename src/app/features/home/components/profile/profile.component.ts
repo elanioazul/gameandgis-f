@@ -288,7 +288,7 @@ export class ProfileComponent {
     if (typeof this.form.controls.avatar.value === 'string'
       && this.form.controls.avatar.value
       && !this.form.controls.avatar.value.startsWith('blob:http')) {
-      return `${environment.apiDomain}` + this.form.controls.avatar.value;
+      return `${environment.apiDomain}` + '/' + this.form.controls.avatar.value;
     }
 
     return this.form.controls.avatar.value || '/assets/avatar-placeholder.jpg';
