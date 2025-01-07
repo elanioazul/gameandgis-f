@@ -3,20 +3,20 @@ import { HttpClient, HttpErrorResponse, HttpEventType, HttpParams, HttpStatusCod
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { catchError, EMPTY, finalize, map, tap } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import { Message } from 'primeng/api';
 import { SessionStorageService } from '@core/services/session-storage.service';
 import { IReadAvatar, IReadUserProfile } from '../../interfaces/user-profile.interface';
 
 type UserProfileForm = Pick<IReadUserProfile, 'name' | 'surnameOne' | 'surnameTwo' | 'email'> & { avatar: string | Blob };
 
-export interface ValidationErrorResponse {
-  message: string;
-  errors: {
-    field: string;
-    message: string;
-    code: string;
-  }[]
-}
+// export interface ValidationErrorResponse {
+//   message: string;
+//   errors: {
+//     field: string;
+//     message: string;
+//     code: string;
+//   }[]
+// }
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +24,6 @@ export interface ValidationErrorResponse {
 })
 export class ProfileComponent {
   private httpClient: HttpClient = inject(HttpClient);
-  private messageService = inject(MessageService);
   private sessionStorageService = inject(SessionStorageService);
 
   protected form = inject(FormBuilder).group({
@@ -45,6 +44,8 @@ export class ProfileComponent {
   protected isSaveRequestInProgress = false;
 
   protected uploadProgress: number = 0;
+
+  messages!: Message[];
 
   protected get isSaveButtonDisabled() {
     return !this.form.valid || this.isFormPristine || this.isSaveRequestInProgress;
@@ -201,7 +202,7 @@ export class ProfileComponent {
         catchError(error => {
           // handle server-side validation errors
           if (error instanceof HttpErrorResponse && error.status === HttpStatusCode.BadRequest) {
-            this.setFormErrors(error.error)
+            //this.setFormErrors(error.error)
 
             return EMPTY;
           }
@@ -242,18 +243,18 @@ export class ProfileComponent {
     })
   }
 
-  private setFormErrors(errorResponse: ValidationErrorResponse | null | undefined) {
-    if (!errorResponse || !errorResponse.errors) {
-      this.form.setErrors(null);
-      return;
-    }
+  // private setFormErrors(errorResponse: ValidationErrorResponse | null | undefined) {
+  //   if (!errorResponse || !errorResponse.errors) {
+  //     this.form.setErrors(null);
+  //     return;
+  //   }
 
-    errorResponse.errors.forEach(error => {
-      this.form.get(error.field)?.setErrors({
-        [error.code]: error.message
-      })
-    })
-  }
+  //   errorResponse.errors.forEach(error => {
+  //     this.form.get(error.field)?.setErrors({
+  //       [error.code]: error.message
+  //     })
+  //   })
+  // }
 
   protected restoreForm() {
     this.userData && this.updateForm(this.userData);
@@ -295,10 +296,10 @@ export class ProfileComponent {
   }
 
   private showSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'The profile was successfully saved' });
+    this.messages = [{ severity: 'success', summary: 'Success', detail: 'Message Content' }]
   }
   private showError() {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An unexpected error has occurred. Please try again later.' });
+    this.messages = [{ severity: 'error', summary: 'Error', detail: 'An unexpected error has occurred. Please try again later.' }]
   }
   private disableForm() {
     Object.values(this.form.controls).forEach(control => {

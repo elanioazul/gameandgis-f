@@ -8,6 +8,7 @@
     (buttonClick)="loadUserData()"></app-button>
   }
   @else {
+  <p-messages [(value)]="messages" [enableService]="false" />
   <form class="form" [formGroup]="form" (ngSubmit)="saveUserData()">
       <div class="form__left">
         <div class="form__info">
