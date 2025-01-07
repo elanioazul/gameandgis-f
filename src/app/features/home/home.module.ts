@@ -16,6 +16,8 @@ import { MainComponent } from './components/main/main.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 import { ProgressBarModule } from 'primeng/progressbar';
+// For dynamic progressbar demo
+import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InputTextModule } from "primeng/inputtext";
 
@@ -39,6 +41,7 @@ import { ErrorFormModule } from "@shared/components/error-form/error-form.module
     ButtonModule,
     ErrorFormModule,
     ProgressBarModule,
+    ToastModule,
     InputTextModule,
     FormsModule,
 		ReactiveFormsModule,

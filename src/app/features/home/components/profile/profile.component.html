@@ -69,13 +69,11 @@
           </div>
         </div>
         <div class="form__buttons">
-          <!-- <button mat-raised-button type="submit" color="primary" [disabled]="isSaveButtonDisabled">Save</button> -->
           <app-button
           [type]="'btn1'"
           [inputText]="'Save'"
           [isDisabled]="isSaveButtonDisabled"
         ></app-button>
-          <!-- <button mat-button type="button" [disabled]="isResetButtonDisabled" (click)="restoreForm()">Reset</button> -->
           <p-button label="Reset" [rounded]="true" severity="secondary" [disabled]="isResetButtonDisabled"  (click)="restoreForm()"></p-button>
         </div>
       </div>
@@ -87,8 +85,6 @@
       </div>
   </form>
 
-  <div class="upload-progress-container">
-    <p-progressBar *ngIf="uploadProgress" [value]="uploadProgress"></p-progressBar>
-  </div>
+  <p-progressBar *ngIf="uploadProgress != 0" [value]="uploadProgress" />
   }
 </div>
