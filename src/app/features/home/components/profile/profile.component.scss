@@ -96,3 +96,7 @@
     text-align: start;
   }
 }
+
+:host ::ng-deep .p-button{
+  font-size:30px;  //your font size here
+}

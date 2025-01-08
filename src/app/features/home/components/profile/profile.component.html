@@ -73,9 +73,18 @@
           <app-button
           [type]="'btn1'"
           [inputText]="'Save'"
+          [backgroundColor]="'#FF4B2B'"
+          [border]="'1px solid #FF4B2B'"
           [isDisabled]="isSaveButtonDisabled"
-        ></app-button>
-          <p-button label="Reset" [rounded]="true" severity="secondary" [disabled]="isResetButtonDisabled"  (click)="restoreForm()"></p-button>
+          ></app-button>
+          <app-button
+          [type]="'btn1'"
+          [inputText]="'Reset'"
+          [backgroundColor]="'#d1ccbe'"
+          [border]="'1px solid #d1ccbe'"
+          [isDisabled]="isSaveButtonDisabled"
+          (buttonClick)="restoreForm()"
+          ></app-button>
         </div>
       </div>
 

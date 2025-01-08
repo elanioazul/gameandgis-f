@@ -3,6 +3,7 @@
 		class="btn1"
 		[innerText]="inputText"
 		[disabled]="isDisabled"
+    [ngStyle]="{ 'background-color': backgroundColor, 'border': border }"
 		(click)="onButtonClick()"
 	></button>
 </ng-template>
