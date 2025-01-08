@@ -1,1 +1,100 @@
-<p>profile works!</p>
+<div class="user-profile">
+  @if (isLoadRequestInProgress) {
+  Waiting for user data...
+  }
+  @else if (hasLoadingError) {
+  Error while reading data!
+  <app-button [type]="'btn1'" [inputText]="'Retry'" [isDisabled]="!form.valid"
+    (buttonClick)="loadUserData()"></app-button>
+  }
+  @else {
+  <p-messages [(value)]="messages" [enableService]="false" />
+  <form class="form" [formGroup]="form" (ngSubmit)="saveUserData()">
+      <div class="form__left">
+        <div class="form__info">
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="name"
+              pInputText
+              formControlName="name"
+              placeholder="Nombre"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('name')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="surnameOne"
+              pInputText
+              formControlName="surnameOne"
+              placeholder="Primer apellido"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('surnameOne')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="text"
+              id="surnameTwo"
+              pInputText
+              formControlName="surnameTwo"
+              placeholder="Segundo apellido"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('surnameTwo')!"
+            ></app-error-form>
+          </div>
+          <div class="form__field-group">
+            <input
+              class="form__input"
+              type="email"
+              id="email"
+              pInputText
+              formControlName="email"
+              placeholder="Email"
+            />
+            <app-error-form
+              class="form__error"
+              [control]="form.get('email')!"
+            ></app-error-form>
+          </div>
+        </div>
+        <div class="form__buttons">
+          <app-button
+          [type]="'btn1'"
+          [inputText]="'Save'"
+          [backgroundColor]="'#FF4B2B'"
+          [border]="'1px solid #FF4B2B'"
+          [isDisabled]="isSaveButtonDisabled"
+          ></app-button>
+          <app-button
+          [type]="'btn1'"
+          [inputText]="'Reset'"
+          [backgroundColor]="'#d1ccbe'"
+          [border]="'1px solid #d1ccbe'"
+          [isDisabled]="isSaveButtonDisabled"
+          (buttonClick)="restoreForm()"
+          ></app-button>
+        </div>
+      </div>
+
+      <div class="form__right">
+        <img [src]="getAvatarFullUrl()" alt="avatar" />
+
+        <input #fileInput type="file" accept="image/*" (change)="onImageSelected($event)" />
+      </div>
+  </form>
+
+  <p-progressBar *ngIf="uploadProgress != 0" [value]="uploadProgress" />
+  }
+</div>

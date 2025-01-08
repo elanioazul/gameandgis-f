@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -13,7 +15,15 @@ import { MainComponent } from './components/main/main.component';
 
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
+import { ProgressBarModule } from 'primeng/progressbar';
+// For dynamic progressbar demo
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
+import { InputTextModule } from "primeng/inputtext";
+
 import { ButtonModule } from "@shared/components/button/button.module";
+import { ErrorFormModule } from "@shared/components/error-form/error-form.module";
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -29,9 +39,17 @@ import { ButtonModule } from "@shared/components/button/button.module";
     RouterModule,
     HomeRoutingModule,
     FontAwesomeModule,
-    ButtonModule
+    ButtonModule,
+    ErrorFormModule,
+    ProgressBarModule,
+    ToastModule,
+    InputTextModule,
+    FormsModule,
+		ReactiveFormsModule,
+    MessagesModule
 
   ],
-  exports: [HomeComponent]
+  exports: [HomeComponent],
+  providers: [MessageService]
 })
 export class HomeModule { }

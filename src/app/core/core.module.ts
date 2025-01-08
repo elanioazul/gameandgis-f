@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
 import { LoadingInterceptor } from './services/infrastructure/interceptors/loading.interceptor';
+import { HeaderInterceptor } from './services/infrastructure/interceptors/header.interceptor';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { LoadingInterceptor } from './services/infrastructure/interceptors/loadi
       useClass: LoadingInterceptor,
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
   ]
 })
 export class CoreModule { }

@@ -4,6 +4,6 @@ export const environment = {
   iam: {
     signIn: '/authentication/sign-in',
     signUp: '/authentication/sign-up',
-
+    userDetail: '/users',
   }
 };

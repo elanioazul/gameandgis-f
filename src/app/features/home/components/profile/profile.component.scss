@@ -1,0 +1,116 @@
+@import "../../../../../theme/theme";
+
+::ng-deep .p-inputtext::placeholder {
+  font-size: 12px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media (min-width: 992px) {
+    font-size: 16px;
+  }
+}
+
+.user-profile {
+  height: 100%;
+  // display: flex;
+  // align-items: center;
+	// justify-content: space-around;
+	// flex-direction: column;
+}
+
+.form {
+  font-family: $header-font;
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 100%;
+  width: 100%;
+	text-align: center;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
+
+  &__left {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  &__buttons {
+    width: 100%;
+    padding-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  &__right {
+    height: 100%;
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    //https://stackoverflow.com/questions/30103019/how-to-make-a-round-mask-over-a-image
+    img {
+      border-radius: 50%;
+      max-height: 50%;
+      @media (min-width: 768px) {
+        border-radius: 70%;
+        max-width: 70%;
+      }
+      @media (min-width: 992px) {
+        border-radius: 80%;
+        max-width: 80%;
+      }
+    }
+  }
+
+  &__field-group {
+    width: 90%;
+    // @media (min-width: 768px) {
+    //   width: 70%;
+    // }
+    // @media (min-width: 992px) {
+    //   width: 40%;
+    // }
+  }
+
+  &__input {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    @media (min-width: 768px) {
+      height: inherit;
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    text-align: start;
+  }
+}
+
+:host ::ng-deep .p-button{
+  font-size:30px;  //your font size here
+}

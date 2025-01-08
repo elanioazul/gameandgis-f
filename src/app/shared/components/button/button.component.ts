@@ -11,6 +11,8 @@ export class ButtonComponent {
   @Input() label!: string;
   @Input() loading!: boolean;
 	@Input() isDisabled!: boolean;
+	@Input() backgroundColor!: string;
+	@Input() border!: string;
 
   //auth0 dashboard
 	@Input() variant: "text" | "solid" | "outline" = "solid";

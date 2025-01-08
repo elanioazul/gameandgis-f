@@ -27,7 +27,7 @@
 				/>
 				<app-error-form
 					class="form__error"
-					[control]="registerForm.get('surnames')!"
+					[control]="registerForm.get('surnameOne')!"
 				></app-error-form>
 			</div>
       <div class="form__field-group">
@@ -41,7 +41,7 @@
 				/>
 				<app-error-form
 					class="form__error"
-					[control]="registerForm.get('surnames')!"
+					[control]="registerForm.get('surnameTwo')!"
 				></app-error-form>
 			</div>
 			<div class="form__field-group">
@@ -92,6 +92,8 @@
 				[type]="'btn1'"
 				[inputText]="'Enviar'"
 				[isDisabled]="!registerForm.valid"
+        [backgroundColor]="'#FF4B2B'"
+        [border]="'1px solid #FF4B2B'"
         (buttonClick)="onSumbmit()"
 			></app-button>
 			<a class="go-login" (click)="goSignin()"
