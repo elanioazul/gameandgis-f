@@ -61,9 +61,23 @@
   &__right {
     height: 100%;
     width: 100%;
+    max-width: 50%;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    //https://stackoverflow.com/questions/30103019/how-to-make-a-round-mask-over-a-image
+    img {
+      border-radius: 50%;
+      max-height: 50%;
+      @media (min-width: 768px) {
+        border-radius: 70%;
+        max-width: 70%;
+      }
+      @media (min-width: 992px) {
+        border-radius: 80%;
+        max-width: 80%;
+      }
+    }
   }
 
   &__field-group {
