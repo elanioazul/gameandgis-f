@@ -1,12 +1,12 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpEventType, HttpParams, HttpStatusCode } from '@angular/common/http';
+import { HttpErrorResponse, HttpEventType, HttpStatusCode } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { catchError, EMPTY, finalize, map, tap } from 'rxjs';
 import { Message } from 'primeng/api';
-import { SessionStorageService } from '@core/services/session-storage.service';
 import { IReadAvatar, IReadUserProfile } from '../../interfaces/user-profile.interface';
-
+import { UtilsJS } from 'src/app/core/utils/js-utils';
+import { UserService } from '@core/services/user.service';
 type UserProfileForm = Pick<IReadUserProfile, 'name' | 'surnameOne' | 'surnameTwo' | 'email'> & { avatar: string | Blob };
 
 // export interface ValidationErrorResponse {
@@ -23,8 +23,7 @@ type UserProfileForm = Pick<IReadUserProfile, 'name' | 'surnameOne' | 'surnameTw
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
-  private httpClient: HttpClient = inject(HttpClient);
-  private sessionStorageService = inject(SessionStorageService);
+  private userService = inject(UserService);
 
   protected form = inject(FormBuilder).group({
     name: new FormControl('', [Validators.required]),
@@ -66,11 +65,6 @@ export class ProfileComponent {
     const formValue = this.form.value;
     const userDataSubset: Partial<IReadUserProfile> = {};
 
-    // for (const key in formValue) {
-    //   if (formValue.hasOwnProperty(key) && this.userData.hasOwnProperty(key)) {
-    //     (userDataSubset[key as keyof IReadUserProfile] as any) = this.userData[key as keyof IReadUserProfile];
-    //   }
-    // }
     for (const key in formValue) {
       if (formValue.hasOwnProperty(key) && this.userData.hasOwnProperty(key)) {
         if (key === 'avatar') {
@@ -83,35 +77,7 @@ export class ProfileComponent {
       }
     }
 
-    return this.isEqual(formValue, userDataSubset);
-  }
-
-  /**
-   * Deep equality check for two objects
-   */
-  private isEqual(obj1: any, obj2: any): boolean {
-    if (obj1 === obj2) {
-      return true;
-    }
-
-    if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
-      return false;
-    }
-
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-
-    if (keys1.length !== keys2.length) {
-      return false;
-    }
-
-    for (const key of keys1) {
-      if (!keys2.includes(key) || !this.isEqual(obj1[key], obj2[key])) {
-        return false;
-      }
-    }
-
-    return true;
+    return UtilsJS.isEqual(formValue, userDataSubset);
   }
 
   constructor() {}
@@ -124,7 +90,7 @@ export class ProfileComponent {
     // set the loading flag when the request is initiated
     this.isLoadRequestInProgress = true;
 
-    this.getUserData$()
+    this.userService.getUserData()
       .pipe(
         finalize(() => {
           // clear the loading flag when the request completes
@@ -147,15 +113,6 @@ export class ProfileComponent {
         // display the user data in the form
         this.updateForm(userData);
       })
-  }
-
-  private getUserData$() {
-    const currentUserData = this.sessionStorageService.getData('current-user') as any;
-    const currentUser = JSON.parse(currentUserData);
-
-
-    return this.httpClient.request<IReadUserProfile>('get', environment.apiDomain + `` + `${environment.iam.userDetail}` + '/' + `${currentUser.userDetails.id}`)
-
   }
 
   private updateForm(userData: IReadUserProfile) {
@@ -188,7 +145,9 @@ export class ProfileComponent {
 
     this.disableForm();
 
-    this.saveUserData$()
+    const formData = this.generateFormData();
+
+    this.userService.saveUserData(formData)
       .pipe(
         finalize(() => {
           // clear the saving flag
@@ -233,29 +192,6 @@ export class ProfileComponent {
       })
   }
 
-  private saveUserData$() {
-    const currentUserData = this.sessionStorageService.getData('current-user') as any;
-    const currentUser = JSON.parse(currentUserData);
-    return this.httpClient.request('put', environment.apiDomain + `` + `${environment.iam.userDetail}` + '/' + `${currentUser.userDetails.id}`, {
-      body: this.getFormData(),
-      reportProgress: true,
-      observe: 'events',
-    })
-  }
-
-  // private setFormErrors(errorResponse: ValidationErrorResponse | null | undefined) {
-  //   if (!errorResponse || !errorResponse.errors) {
-  //     this.form.setErrors(null);
-  //     return;
-  //   }
-
-  //   errorResponse.errors.forEach(error => {
-  //     this.form.get(error.field)?.setErrors({
-  //       [error.code]: error.message
-  //     })
-  //   })
-  // }
-
   protected restoreForm() {
     this.userData && this.updateForm(this.userData);
 
@@ -271,7 +207,12 @@ export class ProfileComponent {
     }
   }
 
-  private getFormData() {
+  /**
+   * Generates a FormData object from the given form values.
+   *
+   * @returns The FormData object ready to be sent in an HTTP request.
+   */
+  private generateFormData(): FormData {
     const formData = new FormData();
 
     Object.entries(this.form.value).forEach(([fieldName, value]) => {
@@ -298,9 +239,11 @@ export class ProfileComponent {
   private showSuccess() {
     this.messages = [{ severity: 'success', summary: 'Success', detail: 'Message Content' }]
   }
+
   private showError() {
     this.messages = [{ severity: 'error', summary: 'Error', detail: 'An unexpected error has occurred. Please try again later.' }]
   }
+
   private disableForm() {
     Object.values(this.form.controls).forEach(control => {
       control.disable()
