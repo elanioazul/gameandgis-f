@@ -161,8 +161,6 @@ export class ProfileComponent {
         catchError(error => {
           // handle server-side validation errors
           if (error instanceof HttpErrorResponse && error.status === HttpStatusCode.BadRequest) {
-            //this.setFormErrors(error.error)
-
             return EMPTY;
           }
 
