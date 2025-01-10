@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { OpenvisorService } from 'src/app/features/visor/services/openvisor.service';
 
 @Component({
   selector: 'app-hunting-areas',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './hunting-areas.component.scss'
 })
 export class HuntingAreasComponent {
+  private readonly openVisorService = inject(OpenvisorService)
+
+  openVisor(): void {
+    this.openVisorService.openVisor(0,0)
+  }
 
 }

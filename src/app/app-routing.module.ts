@@ -29,6 +29,11 @@ const routes: Routes = [
 			),
     canActivate: [authGuard]
 	},
+  {
+    path: 'pop-up',
+    loadChildren: () => import('./shared/features/popup/popup.module').then(m => m.PopupModule),
+  },
+  { path: '**', pathMatch: 'full', redirectTo: '/' }
 ];
 
 @NgModule({
