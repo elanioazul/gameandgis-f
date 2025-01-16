@@ -1,0 +1,13 @@
+<div class="">
+  <div class="flex flex-row justify-content-start">
+    <div class="card flex justify-content-center">
+      <p-dropdown
+          [options]="options"
+          [(ngModel)]="selectedByDefault"
+          [checkmark]="true"
+          optionLabel="subtypeCode"
+          (onChange)="onSelection($event)"/>
+    </div>
+    <div class="ml-3" #coordinates id="coordinates"></div>
+  </div>
+</div>

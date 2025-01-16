@@ -17,10 +17,6 @@ export class ProjUtilities {
 				spatialReference.proj4js
 			],
 			[
-				EPSGs.EPSG23031,
-				Proj4js.EPSG23031
-			],
-			[
 				EPSGs.EPSG3857,
 				Proj4js.EPSG3857
 			],
@@ -31,6 +27,18 @@ export class ProjUtilities {
 			[
 				EPSGs.EPSG4258,
 				Proj4js.EPSG4258
+			],
+			[
+				EPSGs.EPSG25829,
+				Proj4js.EPSG25829
+			],
+			[
+				EPSGs.EPSG25830,
+				Proj4js.EPSG25830
+			],
+			[
+				EPSGs.EPSG25831,
+				Proj4js.EPSG25831
 			]
 		]);
 		register(proj4x);
