@@ -1,7 +1,7 @@
 import { Proj4js } from "@visor/enums/proj4js.enum";
 import { IReadVisor } from "@visor/interfaces/visor/visor.interface";
 import { scaleDenominatorsIgnWmts, topLeftCornersIgnWmtsPNOA } from "./scale-denominators-ign";
-import { extentIbericPeninsulaConstraint } from "./extent-iberic-peninsula";
+import { extentConstraint, extentPnoa } from "./extents";
 import { EPSGs } from "@visor/enums/epsgs.enum";
 import { Formats } from "@visor/enums/formats";
 import { LayerTypes } from "@visor/enums/layers-type.enum";
@@ -15,7 +15,7 @@ export const visorConfig: IReadVisor = {
     srid: 25830,
   },
   scalesDenominators: scaleDenominatorsIgnWmts,
-  extent: extentIbericPeninsulaConstraint,
+  extent: extentConstraint,
   servicesBase: [
     {
 			id: 0,
@@ -26,7 +26,7 @@ export const visorConfig: IReadVisor = {
 			identifiable: false,
 			displayInLegend: false,
 			format: Formats.jpeg,
-			extent: extentIbericPeninsulaConstraint,
+			extent: extentConstraint,
 			matrixSet: EPSGs.EPSG25830,
 			scaleDenominators: scaleDenominatorsIgnWmts,
 			topLeftCorner: topLeftCornersIgnWmtsPNOA,

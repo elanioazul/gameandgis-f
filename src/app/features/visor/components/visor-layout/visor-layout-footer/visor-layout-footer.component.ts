@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, computed, ElementRef, inject, ViewChild } from '@angular/core';
 import { epsgOptions } from '@visor/consts/epsg-options';
 import { IepsgTypes } from '@visor/interfaces/epsg/epsg-options.interface';
 import { MapService } from '@visor/services/map.service';
@@ -20,6 +20,9 @@ export class VisorLayoutFooterComponent implements AfterViewInit {
   selectedByDefault!: IepsgTypes;
 
   mapService = inject(MapService);
+
+  zoom = computed(() => this.mapService.viewZoomLevel());
+  scale = computed(() => this.mapService.viewScale());
 
   constructor() {}
 

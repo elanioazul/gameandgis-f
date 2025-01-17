@@ -1,6 +1,6 @@
 <div class="">
-  <div class="flex flex-row justify-content-start">
-    <div class="card flex justify-content-center">
+  <div class="flex flex-row justify-content-between align-items-center">
+    <div class="flex justify-content-center">
       <p-dropdown
           [options]="options"
           [(ngModel)]="selectedByDefault"
@@ -8,6 +8,8 @@
           optionLabel="subtypeCode"
           (onChange)="onSelection($event)"/>
     </div>
-    <div class="ml-3" #coordinates id="coordinates"></div>
+    <div #coordinates id="coordinates"></div>
+    <div #zoomlevel id="zoomlevel">Zoom: {{this.zoom()}}</div>
+    <div #numericscale id="numericscale"> 1:{{ this.scale()}}</div>
   </div>
 </div>

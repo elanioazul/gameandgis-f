@@ -6,7 +6,7 @@ export interface IView {
 	resolutions?: Array<number>;
 	extent?: Extent;
 	enableRotation?: boolean;
-	maxZoom: number;
-	minZoom: number
+	// maxZoom: number;
+	// minZoom: number
 	constrainResolution: boolean
 }

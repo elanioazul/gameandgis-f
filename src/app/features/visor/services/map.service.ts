@@ -43,6 +43,8 @@ export class MapService {
   // selectors
   public readonly map = computed(() => this.state().map);
   public readonly services = computed(() => this.state().services);
+  viewScale = computed(() => this.state().viewScale);
+  viewZoomLevel = computed(() => this.state().viewZoomLevel);
 
   //sources
   public createMap$ = new Subject<IMap>();
@@ -134,13 +136,13 @@ export class MapService {
       let extent = visorConfig.extent;
       const mapProj = this.getMapProjCode();
       // el extent de la config del visor viene en...4326 => transformarlo a 25381 igual que hago en VisorToMapMapperService
-      if (mapProj !== EPSGs.EPSG25831) {
+      //if (mapProj !== EPSGs.EPSG25830) {
         extent = ProjUtilities.transformExtent(
           visorConfig.extent,
           EPSGs.EPSG4326,
           mapProj
         );
-      }
+      //}
       this.zoomToExtent(extent);
       this.setPredefinedExtent$.next(extent);
     }
@@ -214,11 +216,7 @@ export class MapService {
   }
 
   public setCursor(cursor: CursorStyle): void {
-    console.log(cursor);
-
     this.map()!.getViewport().style.cursor = cursor;
-    console.log(this.map());
-
   }
 
   updateMapStateWithScaleAndZoom(scale: string | null, zoom: number | null): void {

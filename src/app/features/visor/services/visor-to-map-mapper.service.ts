@@ -30,8 +30,8 @@ export class VisorToMapMapperService extends MapperGeneric<IReadVisor, IMap> {
         resolutions: props.scalesDenominators.map((deniminator: number) => {
           return deniminator * meterPerUnit
         }),
-        minZoom: 0,
-        maxZoom: 12
+        // minZoom: 0,
+        // maxZoom: 12
       }),
       pixelRatio: 1,
       keyboardEventTarget: document,
