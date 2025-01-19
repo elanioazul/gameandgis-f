@@ -6,6 +6,7 @@ Front de la app *Gameandgis*
 Gestión de areas de caza para cazadores y gestores de terrenos cinegéticos
 
 ## Run
+npm install
 npm run start
 
 ## Entry point
